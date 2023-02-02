@@ -5,7 +5,7 @@ import router.azienda as azienda
 app=FastAPI()
 
 origins = [
-    '*'
+    'http://localhost:4200'
 ]
 
 app.add_middleware(
