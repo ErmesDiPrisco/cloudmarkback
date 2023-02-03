@@ -28,6 +28,21 @@ class Dipendente_dao:
                                             email = element[6], telefono = element[7], data_nascita = element[8]))
         Mysql.close_connection()
         return results
+    # find multi emplooyees
+    def find_multi_employees(cls, value: str, id: str):
+        Mysql.openconnection()
+        Mysql.query(f"SELECT d.nome, d.cognome, d_a.matricola, d.cf \
+                        FROM dipendente d \
+                        INNER JOIN dipendente_azienda d_a ON d.id_dipendente = d_a.id_dipendente \
+                        INNER JOIN azienda a ON d_a.id_azienda = a.id_azienda \
+                        WHERE d_a.matricola like '{value}%' \
+                        AND d.nome like '{value}%' \
+                        AND d.cognome like '{value}%' \
+                        WHERE d.id_dipendnete = {id} \
+                    ")
+        results = Mysql.get_results()
+        Mysql.close_connection()
+        return results
         
     # INSERT
     @classmethod
