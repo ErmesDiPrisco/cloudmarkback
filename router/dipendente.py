@@ -21,10 +21,14 @@ async def get_dipendente():
 @router.get("")
 async def prendi_dipendente(id_dipendente: str | None=None):
     if id_dipendente:
-        if Dipendente_dao.get_all_employees(id_dipendente) == None :
-            raise HTTPException (status_code=404, detail="Dipendente non trovato")
+        if Dipendente_dao.get_all_employees() == [] :
+            raise HTTPException (status_code=404, detail="Nessuna azienda trovata")
         try: 
             if Dipendente_dao.get_all_employees() == []:
                 raise HTTPException (status_code=404, detail="Dipendente non trovato")
         except Exception as e:
             raise HTTPException (status_code=500, detail=e.msg)
+        
+@router.post('/new')
+async def addEmployee(employee :Dipendente_model):
+  return employee

@@ -19,7 +19,7 @@ async def get_aziende():
 
 
 @router.get("")
-async def prendi_azienda(azienda_id: str | None=None):
+async def prendi_azienda(azienda_id: str | None = None):
     if azienda_id:
         if Azienda_dao.get_all_companies(azienda_id) == None :
             raise HTTPException (status_code=404, detail="Azienda non trovata")
@@ -28,3 +28,7 @@ async def prendi_azienda(azienda_id: str | None=None):
                 raise HTTPException (status_code=404, detail="Azienda non trovata")
         except Exception as e:
             raise HTTPException (status_code=500, detail=e.msg)
+         
+@router.post('/new')
+async def addCompany(company :Azienda_model):
+  return company
