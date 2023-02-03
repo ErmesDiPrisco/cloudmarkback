@@ -36,8 +36,8 @@ class Dipendente_dao:
                         INNER JOIN dipendente_azienda d_a ON d.id_dipendente = d_a.id_dipendente \
                         INNER JOIN azienda a ON d_a.id_azienda = a.id_azienda \
                         WHERE d_a.matricola like '{value}%' \
-                        AND d.nome like '{value}%' \
-                        AND d.cognome like '{value}%' \
+                        OR d.nome like '{value}%' \
+                        OR d.cognome like '{value}%' \
                         AND d.id_dipendente = {id} \
                     ")
         results = Mysql.get_results()
