@@ -38,7 +38,7 @@ class Dipendente_dao:
                         WHERE d_a.matricola like '{value}%' \
                         OR d.nome like '{value}%' \
                         OR d.cognome like '{value}%' \
-                        AND d.id_dipendente = {id} \
+                        AND d.id_azienda = '{id}' \
                     ")
         results = Mysql.get_results()
         Mysql.close_connection()
