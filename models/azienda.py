@@ -11,3 +11,6 @@ class Azienda_model(BaseModel):
     email: str | None = None
     pec: str | None = None
     fax: str | None = None
+
+    
+    fax: str | None = None
