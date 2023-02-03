@@ -13,7 +13,7 @@ class Azienda_dao:
             indirizzo=element[3], cap=element[4], iban=element[5], telefono=element[6], email=element[7], pec=element[8], fax=element[9] ))
         Mysql.close_connection()
         return results
-
+    # INSERT
     @classmethod
     def insert_company(cls, id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax):
         Mysql.openconnection()
@@ -21,13 +21,13 @@ class Azienda_dao:
                         VALUES '{id_azienda}','{nome}','{p_iva}','{indirizzo}','{cap}','{iban}','{telefono}','{email}','{pec}','{fax}'")
         Mysql.commit()
         Mysql.close_connection()
-    
+    # DELETE
     @classmethod
     def delete_company(cls, id_azienda):
         Mysql.close_connection()
         Mysql.query(f'DELETE from azienda where id_azienda={id_azienda}')
         Mysql.close_connection()
-
+    # UPDATE
     @classmethod
     def update_company(cls, id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax):
         Mysql.openconnection()

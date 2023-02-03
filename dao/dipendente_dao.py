@@ -14,5 +14,27 @@ class Dipendente_dao:
                                             email = element[6], telefono = element[7], data_nascita = element[8]))
         Mysql.close_connection()
         return results
+    # INSERT
+    @classmethod
+    def insert_employee(cls, id_dipendente, nome, cognome, cf, iban, id_tipo_contratto, email, telefono, data_nascita):
+        Mysql.openconnection()
+        Mysql.query(f"INSERT INTO dipendente (id_dipendente, nome, cognome, cf, iban, id_tipo_contratto, email, telefono, data_nascita) \
+                        VALUES '{id_dipendente}','{nome}','{cognome}','{cf}','{iban}','{id_tipo_contratto}','{email}','{telefono}','{data_nascita}'")
+        Mysql.commit()
+        Mysql.close_connection()
+    # DELETE
+    @classmethod
+    def delete_employee(cls, id_dipendente):
+        Mysql.close_connection()
+        Mysql.query(f'DELETE from dipendente where id_dipendente={id_dipendente}')
+        Mysql.close_connection()
+    # UPDATE
+    @classmethod
+    def update_employee(cls, id_dipendente, nome, cognome, cf, iban, id_tipo_contratto, email, telefono, data_nascita):
+        Mysql.openconnection()
+        Mysql.query(f"UPDATE dipendente\
+                    SET nome='{nome}', nome= '{nome}', cognome= '{cognome}', cf='{cf}', iban='{iban}', id_tipo_contratto='{id_tipo_contratto}', email='{email}', telefono='{telefono}', data_nascita='{data_nascita}'\
+                        WHERE id_dipendente={id_dipendente}")
+        Mysql.close_connection()
         
         
