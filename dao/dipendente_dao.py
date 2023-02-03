@@ -57,6 +57,7 @@ class Dipendente_dao:
     def delete_employee(cls, id_dipendente):
         Mysql.close_connection()
         Mysql.query(f'DELETE from dipendente where id_dipendente={id_dipendente}')
+        Mysql.commit()
         Mysql.close_connection()
     # UPDATE
     @classmethod
@@ -65,6 +66,7 @@ class Dipendente_dao:
         Mysql.query(f"UPDATE dipendente\
                     SET nome='{nome}', nome= '{nome}', cognome= '{cognome}', cf='{cf}', iban='{iban}', id_tipo_contratto='{id_tipo_contratto}', email='{email}', telefono='{telefono}', data_nascita='{data_nascita}'\
                         WHERE id_dipendente={id_dipendente}")
+        Mysql.commit()
         Mysql.close_connection()
         
         
