@@ -40,6 +40,7 @@ class Azienda_dao:
     def delete_company(cls, id_azienda):
         Mysql.close_connection()
         Mysql.query(f'DELETE from azienda where id_azienda={id_azienda}')
+        Mysql.commit()
         Mysql.close_connection()
     # UPDATE
     @classmethod
@@ -48,4 +49,5 @@ class Azienda_dao:
         Mysql.query(f"UPDATE azienda\
                     SET nome='{nome}', p_iva= '{p_iva}', indirizzo= '{indirizzo}', cap='{cap}', iban='{iban}', telefono='{telefono}', email='{email}', pec='{pec}', fax='{fax}'\
                         WHERE id_azienda={id_azienda}")
+        Mysql.commit()
         Mysql.close_connection()
