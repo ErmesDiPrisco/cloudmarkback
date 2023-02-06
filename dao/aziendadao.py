@@ -15,12 +15,11 @@ class Azienda_dao:
         Mysql.close_connection()
         return results
     # company by id
-     # employee by id
     @classmethod
     def get_company_by_id(cls, id):
         Mysql.openconnection()
-        Mysql.query(f'SELECT * FROM azienda WHERE id_azienda = {id}')
-        data = Mysql.get_result()
+        Mysql.query(f'SELECT * FROM azienda WHERE id_azienda = \'{id}\'')
+        data = Mysql.get_results()
         result = list()
         for element in data:
             result.append(Azienda_model(**element))

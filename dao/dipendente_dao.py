@@ -19,8 +19,8 @@ class Dipendente_dao:
     @classmethod
     def get_employee_by_id(cls, id):
         Mysql.openconnection()
-        Mysql.query(f'SELECT * FROM dipendente WHERE id_dipendente = {id}')
-        data = Mysql.get_result()
+        Mysql.query(f'SELECT * FROM dipendente WHERE id_dipendente = \'{id}\'')
+        data = Mysql.get_results()
         result = list()
         for element in data:
             result.append(Dipendente_model(**element))

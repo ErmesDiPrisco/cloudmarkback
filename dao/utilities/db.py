@@ -22,9 +22,9 @@ class Mysql:
     @classmethod
     def get_results(cls):
         return cls.cursor.fetchall()
-    @classmethod
-    def get_result(cls):
-        return cls.cursor.fetchone()
+    # @classmethod
+    # def get_result(cls):
+    #     return cls.cursor.fetchone()
     @classmethod
     def close_connection(cls):
         cls.cursor.close()
