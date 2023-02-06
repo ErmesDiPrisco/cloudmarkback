@@ -20,12 +20,12 @@ class Azienda_dao:
     def get_company_by_id(cls, id):
         Mysql.openconnection()
         Mysql.query(f'SELECT * FROM azienda WHERE id_azienda = {id}')
-        data = Mysql.get_results()
-        results = list()
+        data = Mysql.get_result()
+        result = list()
         for element in data:
-            results.append(Azienda_model(**element))
+            result.append(Azienda_model(**element))
         Mysql.close_connection()
-        return results
+        return result
     # INSERT
     @classmethod
     def insert_company(cls, id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax):

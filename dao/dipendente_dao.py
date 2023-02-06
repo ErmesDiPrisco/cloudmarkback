@@ -20,12 +20,12 @@ class Dipendente_dao:
     def get_employee_by_id(cls, id):
         Mysql.openconnection()
         Mysql.query(f'SELECT * FROM dipendente WHERE id_dipendente = {id}')
-        data = Mysql.get_results()
-        results = list()
+        data = Mysql.get_result()
+        result = list()
         for element in data:
-            results.append(Dipendente_model(**element))
+            result.append(Dipendente_model(**element))
         Mysql.close_connection()
-        return results
+        return result
     # find multi emplooyees
     @classmethod
     def find_multi_employees(cls, value: str, id: str):
@@ -37,7 +37,8 @@ class Dipendente_dao:
                         WHERE d_a.matricola like '{value}%' \
                         OR d.nome like '{value}%' \
                         OR d.cognome like '{value}%' \
-                        AND d.id_azienda = '{id}' \
+                        OR (concat(d.nome, ' ', d.cognome) like '{value}%')  \
+                        OR (concat(d.cognome, ' ', d.nome) like '{value}%')  \
                     ")
         results = Mysql.get_results()
         Mysql.close_connection()
