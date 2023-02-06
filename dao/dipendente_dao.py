@@ -11,24 +11,23 @@ class Dipendente_dao:
         data = Mysql.get_results()
         results = list()
         for element in data:
-            results.append(Dipendente_model(id_dipendente = element[0], nome = element[1], cognome = element[2], 
-                                            cf = element[3], iban = element[4], id_tipo_contratto = element[5], 
-                                            email = element[6], telefono = element[7], data_nascita = element[8]))
+            print(element)
+            results.append(Dipendente_model(**element))
         Mysql.close_connection()
         return results
     # employee by id
+    @classmethod
     def get_employee_by_id(cls, id):
         Mysql.openconnection()
         Mysql.query(f'SELECT * FROM dipendente WHERE id_dipendente = {id}')
         data = Mysql.get_results()
         results = list()
         for element in data:
-            results.append(Dipendente_model(id_dipendente = element[0], nome = element[1], cognome = element[2], 
-                                            cf = element[3], iban = element[4], id_tipo_contratto = element[5], 
-                                            email = element[6], telefono = element[7], data_nascita = element[8]))
+            results.append(Dipendente_model(**element))
         Mysql.close_connection()
         return results
     # find multi emplooyees
+    @classmethod
     def find_multi_employees(cls, value: str, id: str):
         Mysql.openconnection()
         Mysql.query(f"SELECT d.nome, d.cognome, d_a.matricola, d.cf \

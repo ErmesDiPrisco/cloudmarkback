@@ -12,10 +12,19 @@ router = APIRouter(prefix='/dipendente', tags=['dipendente'])
 @router.get(
     '/all',
     response_model=List[Dipendente_model],
-    response_model_exclude_none=True,
+    # response_model_exclude_none=True,
     response_model_include={'id_dipendente', 'nome', 'cognome', 'cf', 'iban', 'id_tipo_contratto', 'email', 'telefono', 'data_nascita'})
 async def get_dipendente():
     return Dipendente_dao.get_all_employees()
+
+@router.get(
+    '/employee/{id}',
+    response_model=List[Dipendente_model],
+    # response_model_exclude_none=True,
+    response_model_include={'id_dipendente', 'nome', 'cognome', 'cf', 'iban', 'id_tipo_contratto', 'email', 'telefono', 'data_nascita'})
+    
+async def get_dipendente(id: str):
+    return Dipendente_dao.get_employee_by_id(id)
 
 
 @router.get("")
