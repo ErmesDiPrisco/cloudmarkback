@@ -42,3 +42,12 @@ async def get_aziende(id: str):
 async def addCompany(company :Azienda_model):
   return Azienda_dao.insert_company(company.id_azienda, company.nome, company.p_iva, company.indirizzo, company.cap, company.iban, company.telefono,
                                      company.email, company.pec, company.fax)
+
+@router.patch('/update')
+async def updateCompany(company: Azienda_model):
+    return Azienda_dao.update_company(company.id_azienda, company.nome, company.p_iva, company.indirizzo, company.cap, company.iban, company.telefono,
+                                     company.email, company.pec, company.fax)
+
+@router.delete('/delete')
+async def deleteCompany(company: str):
+    return Azienda_dao.delete_company(company)
