@@ -40,4 +40,5 @@ async def get_aziende(id: str):
          
 @router.post('/new')
 async def addCompany(company :Azienda_model):
-  return company
+  return Azienda_dao.insert_company(company.id_azienda, company.nome, company.p_iva, company.indirizzo, company.cap, company.iban, company.telefono,
+                                     company.email, company.pec, company.fax)

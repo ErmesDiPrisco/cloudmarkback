@@ -30,7 +30,7 @@ class Azienda_dao:
     def insert_company(cls, id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax):
         Mysql.openconnection()
         Mysql.query(f"INSERT INTO azienda (id_azienda, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax) \
-                        VALUES '{id_azienda}','{nome}','{p_iva}','{indirizzo}','{cap}','{iban}','{telefono}','{email}','{pec}','{fax}'")
+                        VALUE ('{id_azienda}','{nome}','{p_iva}','{indirizzo}','{cap}','{iban}','{telefono}','{email}','{pec}','{fax}')")
         Mysql.commit()
         Mysql.close_connection()
     # DELETE
