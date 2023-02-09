@@ -20,9 +20,9 @@ class Azienda_dao:
         Mysql.openconnection()
         Mysql.query(f'SELECT * FROM azienda WHERE id_azienda = \'{id}\'')
         data = Mysql.get_results()
-        result = list()
-        for element in data:
-            result.append(Azienda_model(**element))
+        result = Azienda_model(**data[0])
+        # for element in data:
+        #     result.append(Azienda_model(**element))
         Mysql.close_connection()
         return result
     # INSERT

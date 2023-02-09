@@ -1,3 +1,4 @@
+import email
 from fastapi import APIRouter, status , HTTPException   
 
 from dao.dipendente_dao import Dipendente_dao
@@ -38,4 +39,14 @@ async def get_dipendente(id: str):
         
 @router.post('/new')
 async def addEmployee(employee :Dipendente_model):
-  return employee
+  return Dipendente_dao.insert_employee(employee.id_dipendente, employee.nome, employee.cognome, employee.cf,
+                                        employee.iban, employee.id_tipo_contratto, employee.email, employee.telefono, employee.data_nascita)
+
+@router.put('/update')
+async def updateCompany(employee: Dipendente_model):
+    return Dipendente_dao.update_employee(employee.id_dipendente, employee.nome, employee.cognome, employee.cf,
+                                        employee.iban, employee.id_tipo_contratto, employee.email, employee.telefono, employee.data_nascita)
+
+@router.delete('/delete')
+async def deleteCompany(dipendente: str):
+    return Dipendente_dao.delete_employee(dipendente)
