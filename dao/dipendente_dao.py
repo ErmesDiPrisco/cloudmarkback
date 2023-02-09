@@ -84,5 +84,13 @@ class Dipendente_dao:
                         WHERE id_dipendente={id_dipendente}")
         Mysql.commit()
         Mysql.close_connection()
+    
+    @classmethod
+    def link_employee_company(cls, id_dipendente, id_azienda, data_inizio_rapporto, matricola, data_fine_rapporto):
+        Mysql.openconnection()
+        Mysql.query(f"INSERT INTO dipendente_azienda (id_dipendente,id_azienda, data_inizio_rapporto, matricola,data_fine_rapporto)\
+                    VALUES ('{id_dipendente}', '{id_azienda}','{data_inizio_rapporto}','{matricola}','{data_fine_rapporto}')")
+        Mysql.commit()
+        Mysql.close_connection()
         
         

@@ -1,3 +1,5 @@
+
+import datetime
 import email
 from fastapi import APIRouter, status , HTTPException   
 
@@ -5,7 +7,9 @@ from dao.dipendente_dao import Dipendente_dao
 
 from models.dipendente import Dipendente_model
 
-from typing import List
+from typing import List, Optional
+
+from models.dipendente_azienda import Dipendente_azienda
 
 router = APIRouter(prefix='/dipendente', tags=['dipendente'])
 
@@ -67,3 +71,7 @@ async def get_dipendente(value: str, id: str):
     response_model_include={'id_dipendente', 'nome', 'cognome', 'cf', 'iban', 'id_tipo_contratto', 'email', 'telefono', 'data_nascita'})
 async def get_dipendenti_by_azienda(id: str):
     return Dipendente_dao.get_all_emplyees_by_id_azienda(id)
+
+@router.post('/link')
+async def linktocompany(link: Dipendente_azienda):
+    return Dipendente_dao.link_employee_company(link.id_dipendente, link.id_azienda, link.data_inizio, link.matricola , link.data_fine)
