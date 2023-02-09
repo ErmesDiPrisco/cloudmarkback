@@ -26,6 +26,22 @@ class Dipendente_dao:
             result.append(Dipendente_model(**element))
         Mysql.close_connection()
         return result
+    # get all employees by azienda_id
+    @classmethod
+    def get_all_emplyees_by_id_azienda(cls, id):
+        Mysql.openconnection()
+        Mysql.query(f"SELECT d.id_dipendente, d.nome, d.cognome, d_a.matricola, d.cf, d.iban, d.id_tipo_contratto, d.email, d.telefono, d.data_nascita \
+                        FROM dipendente d \
+                        INNER JOIN dipendente_azienda d_a ON d.id_dipendente = d_a.id_dipendente \
+                        INNER JOIN azienda a ON d_a.id_azienda = a.id_azienda \
+                        WHERE a.id_azienda = '{id}' \
+                    ")
+        data = Mysql.get_results()
+        result = list()
+        for element in data:
+            result.append(Dipendente_model(**element))
+        Mysql.close_connection()
+        return result
     # find multi emplooyees
     @classmethod
     def find_multi_employees(cls, value: str, id: str):
