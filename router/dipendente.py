@@ -50,3 +50,13 @@ async def updateCompany(employee: Dipendente_model):
 @router.delete('/delete')
 async def deleteCompany(dipendente: str):
     return Dipendente_dao.delete_employee(dipendente)
+
+
+@router.get(
+    '/multiemployee',
+    response_model=List[Dipendente_model],
+    response_model_exclude_none=True,
+    response_model_include={'id_dipendente', 'nome', 'cognome', 'cf', 'iban', 'id_tipo_contratto', 'email', 'telefono', 'data_nascita'})
+    
+async def get_dipendente(value: str, id: str):
+    return Dipendente_dao.find_multi_employees(value, id)
