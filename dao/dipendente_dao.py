@@ -30,7 +30,7 @@ class Dipendente_dao:
     @classmethod
     def find_multi_employees(cls, value: str, id: str):
         Mysql.openconnection()
-        Mysql.query(f"SELECT d.nome, d.cognome, d_a.matricola, d.cf \
+        Mysql.query(f"SELECT d.id_dipendente, d.nome, d.cognome, d_a.matricola, d.cf, d.iban, d.id_tipo_contratto, d.email, d.telefono, d.data_nascita \
                         FROM dipendente d \
                         INNER JOIN dipendente_azienda d_a ON d.id_dipendente = d_a.id_dipendente \
                         INNER JOIN azienda a ON d_a.id_azienda = a.id_azienda \
