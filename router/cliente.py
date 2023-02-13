@@ -19,7 +19,7 @@ async def get_cliente():
 
 @router.get(
     '/customer',
-    response_model=List[Cliente_model],
+    response_model=Cliente_model,
     response_model_exclude_none=True,
     response_model_include={'id_cliente', 'nome', 'p_iva', 'indirizzo', 'cap', 'iban', 'telefono', 'email', 'pec', 'fax'})
 async def get_cliente(id: str):
@@ -27,8 +27,9 @@ async def get_cliente(id: str):
 
 @router.post('/new')
 async def addCustomer(customer :Cliente_model):
-  return Cliente_dao.insert_customer(customer.id_cliente, customer.nome, customer.p_iva, customer.indirizzo,
-                                        customer.cap, customer.iban, customer.telefono, customer.email, customer.pec, customer.fax)
+  #return Cliente_dao.insert_customer(customer.id_cliente, customer.nome, customer.p_iva, customer.indirizzo,
+                                       # customer.cap, customer.iban, customer.telefono, customer.email, customer.pec, customer.fax)
+    return customer
 
 @router.put('/update')
 async def updateCustomer(customer: Cliente_model):
@@ -50,7 +51,7 @@ async def patchCustomer(customer: Cliente_model):
     response_model_exclude_none=True,
     response_model_include={'id_cliente', 'nome', 'p_iva', 'indirizzo', 'cap', 'iban', 'telefono', 'email', 'pec', 'fax'})
 async def get_clienti_by_azienda(id: str):
-    return Cliente_dao.get_all_customers_by_id_azienda()
+    return Cliente_dao.get_all_customers_by_id_azienda(id)
 
 @router.get(
     'customer_by_commessa',

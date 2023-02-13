@@ -50,15 +50,30 @@ class Cliente_dao:
         Mysql.close_connection()
         
     @classmethod
-    def get_all_customers_by_id_azienda(cls):
+    def get_all_customers_by_id_azienda(cls, id):
         Mysql.openconnection()
-        Mysql.query('select * from azienda_cliente')
-    Mysql.commit()
-    Mysql.close_connection()
+        Mysql.query(f"SELECT c.id_cliente, c.nome, c.p_iva, c.indirizzo, c.cap, c.iban, c.telefono, c.email, c.telefono, c.pec, c.fax \
+                    FROM cliente c \
+                    INNER JOIN azienda_cliente c_a ON c.id_cliente = c_a.id_cliente \
+                    INNER JOIN azienda a ON c_a.id_azienda = a.id_azienda \
+                    WHERE a.id_azienda = '{id}'")
+        data = Mysql.get_results()
+        result = list()
+        for element in data:
+            result.append(Cliente_model(**element))
+        Mysql.close_connection()
+        return result
     
     @classmethod
     def get_customers_by_commessa(cls):
         Mysql.openconnection()
-        Mysql.query('SELECT id_cliente, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax \
+        Mysql.query('SELECT c.id_cliente, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax \
                     FROM cliente c \
                     INNER JOIN commessa cm ON c.id_cliente = cm.id_cliente') 
+        data = Mysql.get_results()
+        result = list()
+        for element in data:
+            result.append(Cliente_model(**element))
+        Mysql.close_connection()
+        return result
+        
