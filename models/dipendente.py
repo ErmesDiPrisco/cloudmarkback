@@ -8,10 +8,10 @@ class Dipendente_model(BaseModel):
     cognome: Optional[str]= ''
     cf: str 
     iban: str 
-    id_tipo_contratto: str 
+    id_tipo_contratto: str ='198ef11d-cf73-4245-8469-2ddfa9979acf'
     email: Optional[str]= ''
     telefono: Optional[str]= ''
-    data_nascita: Optional[datetime.date]= ''
+    data_nascita: Optional[datetime.date]= '1111-11-11'
 
     # # validazione id_dipendente
     # @validator('id_dipendente')

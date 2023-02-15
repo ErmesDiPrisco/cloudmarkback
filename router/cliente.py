@@ -59,4 +59,4 @@ async def get_clienti_by_azienda(id: str):
     response_model_exclude_none=True,
     response_model_include={'id_cliente', 'nome', 'p_iva', 'indirizzo', 'cap', 'iban', 'telefono', 'email', 'pec', 'fax'})
 async def get_clienti_by_commessa(id: str):
-    return Cliente_dao.get_customers_by_commessa()
+    return Cliente_dao.get_customers_by_commessa(id)

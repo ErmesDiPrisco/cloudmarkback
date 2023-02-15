@@ -65,7 +65,7 @@ class Dipendente_dao:
     def insert_employee(cls, id_dipendente, nome, cognome, cf, iban, id_tipo_contratto, email, telefono, data_nascita):
         Mysql.openconnection()
         Mysql.query(f"INSERT INTO dipendente (id_dipendente, nome, cognome, cf, iban, id_tipo_contratto, email, telefono, data_nascita) \
-                        VALUES '{id_dipendente}','{nome}','{cognome}','{cf}','{iban}','{id_tipo_contratto}','{email}','{telefono}','{data_nascita}'")
+                        VALUES ('{id_dipendente}','{nome}','{cognome}','{cf}','{iban}','{id_tipo_contratto}','{email}','{telefono}','{data_nascita}')")
         Mysql.commit()
         Mysql.close_connection()
     # DELETE

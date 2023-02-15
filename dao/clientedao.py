@@ -65,11 +65,12 @@ class Cliente_dao:
         return result
     
     @classmethod
-    def get_customers_by_commessa(cls):
+    def get_customers_by_commessa(cls, id_azienda):
         Mysql.openconnection()
-        Mysql.query('SELECT c.id_cliente, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax \
+        Mysql.query(f"SELECT c.id_cliente, nome, p_iva, indirizzo, cap, iban, telefono, email, pec, fax \
                     FROM cliente c \
-                    INNER JOIN commessa cm ON c.id_cliente = cm.id_cliente') 
+                    INNER JOIN commessa cm ON c.id_cliente = cm.id_cliente\
+                    WHERE cm.id_azienda='{id_azienda}'") 
         data = Mysql.get_results()
         result = list()
         for element in data:
