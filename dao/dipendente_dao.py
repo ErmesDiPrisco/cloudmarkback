@@ -71,8 +71,8 @@ class Dipendente_dao:
     # DELETE
     @classmethod
     def delete_employee(cls, id_dipendente):
-        Mysql.close_connection()
-        Mysql.query(f'DELETE from dipendente where id_dipendente={id_dipendente}')
+        Mysql.openconnection()
+        Mysql.query(f"DELETE from dipendente where id_dipendente='{id_dipendente}'")
         Mysql.commit()
         Mysql.close_connection()
     # UPDATE
@@ -90,6 +90,13 @@ class Dipendente_dao:
         Mysql.openconnection()
         Mysql.query(f"INSERT INTO dipendente_azienda (id_dipendente,id_azienda, data_inizio_rapporto, matricola,data_fine_rapporto)\
                     VALUES ('{id_dipendente}', '{id_azienda}','{data_inizio_rapporto}','{matricola}','{data_fine_rapporto}')")
+        Mysql.commit()
+        Mysql.close_connection()
+
+    @classmethod
+    def deletelink(cls, id_dipendente, id_azienda):
+        Mysql.openconnection()
+        Mysql.query(f"DELETE from dipendente_azienda where id_dipendente='{id_dipendente}' and id_azienda='{id_azienda}'")
         Mysql.commit()
         Mysql.close_connection()
         

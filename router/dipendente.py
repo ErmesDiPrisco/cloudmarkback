@@ -47,12 +47,12 @@ async def addEmployee(employee :Dipendente_model):
                                         employee.iban, employee.id_tipo_contratto, employee.email, employee.telefono, employee.data_nascita)
 
 @router.put('/update')
-async def updateCompany(employee: Dipendente_model):
+async def updateEmployee(employee: Dipendente_model):
     return Dipendente_dao.update_employee(employee.id_dipendente, employee.nome, employee.cognome, employee.cf,
                                         employee.iban, employee.id_tipo_contratto, employee.email, employee.telefono, employee.data_nascita)
 
 @router.delete('/delete')
-async def deleteCompany(dipendente: str):
+async def deleteEmployee(dipendente):
     return Dipendente_dao.delete_employee(dipendente)
 
 
@@ -75,3 +75,8 @@ async def get_dipendenti_by_azienda(id: str):
 @router.post('/link')
 async def linktocompany(link: Dipendente_azienda):
     return Dipendente_dao.link_employee_company(link.id_dipendente, link.id_azienda, link.data_inizio, link.matricola , link.data_fine)
+
+@router.delete('/deletelink')
+async def deletelink(id_dipendente, id_azienda):
+    return Dipendente_dao.deletelink(id_dipendente, id_azienda)
+    
