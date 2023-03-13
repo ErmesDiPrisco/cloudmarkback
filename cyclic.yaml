@@ -1,0 +1,9 @@
+stack:
+  name: python
+
+build:
+  steps:
+    - run: pip install -r requirements.txt
+
+run:
+  command: python main.py
