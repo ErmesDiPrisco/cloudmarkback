@@ -1,3 +1,19 @@
 {
-    "scripts": {"start": "uvicorn main:app"}
+  "scripts": {
+    "start": "uvicorn main:app"
+  },
+  "name": "cloudmarkback",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErmesDiPrisco/cloudmarkback.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErmesDiPrisco/cloudmarkback/issues"
+  },
+  "homepage": "https://github.com/ErmesDiPrisco/cloudmarkback#readme",
+  "description": ""
 }
